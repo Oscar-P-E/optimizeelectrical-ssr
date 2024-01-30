@@ -1,67 +1,74 @@
-import { unstable_noStore as noStore } from "next/cache";
-import Link from "next/link";
+"use client";
 
-import { CreatePost } from "~/app/_components/create-post";
-import { api } from "~/trpc/server";
 
-export default async function Home() {
-  noStore();
-  const hello = await api.post.hello.query({ text: "from tRPC" });
+import { useState } from "react";
+import { Header } from "./_components/Header";
+import { SideMenu } from "./_components/SideMenu";
+import { Hero } from "./_components/Hero";
+import { About } from "./_components/About";
+import { Services } from "./_components/Services";
+import { ServicesList } from "./_components/ServicesList";
+import { ServiceAreas } from "./_components/ServiceAreas";
+import { Testimonials } from "./_components/Testimonials";
+import { Contact } from "./_components/Contact";
+import { Footer } from "./_components/Footer";
+import { useTawkTo } from "./hooks/useTawkTo";
+import { Helmet } from "react-helmet";
+
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useTawkTo();
+
+  const videoJsonLd = {
+    "@context": "http://schema.org",
+    "@type": "VideoObject",
+    name: "Optimize Electrical Video",
+    description: "Optimize Electrical on the Sunshine Coast, Queensland",
+    thumbnailUrl: "/img/optimize-electrical-poster.jpg",
+    uploadDate: "2021-11-08T08:00:00+08:00",
+    duration: "PT31S", // PT = Period of Time
+    contentUrl: "/video/optimize-electrical-no-audio.mp4",
+  };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
-          </p>
-        </div>
+    <div>
+      <Helmet>
+        <title>Optimize Electrical</title>
+        <meta
+          name="description"
+          content="Your local electrician on the Sunshine Coast, Beerwah 4519, Caloundra 4551, Nambour 4560, electrician near me"
+        />
+        <meta property="og:image" content="/img/Screenshot.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(videoJsonLd)}
+        </script>
+      </Helmet>
 
-        <CrudShowcase />
+      <SideMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        scrollToSection={scrollToSection}
+      />
+
+      <div className="flex flex-col">
+        <Header setIsOpen={setIsOpen} />
+        <Hero scrollToContact={() => scrollToSection("contact")} />
       </div>
-    </main>
-  );
-}
 
-async function CrudShowcase() {
-  const latestPost = await api.post.getLatest.query();
-
-  return (
-    <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
-      ) : (
-        <p>You have no posts yet.</p>
-      )}
-
-      <CreatePost />
+      <About />
+      <Services />
+      <ServicesList />
+      <ServiceAreas />
+      <Testimonials />
+      <Contact />
+      <Footer />
     </div>
   );
-}
+};
+
+export default App;
