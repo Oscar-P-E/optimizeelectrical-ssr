@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type HeroProps = {
   scrollToContact: () => void;
 };
 
 export const Hero = ({ scrollToContact }: HeroProps) => {
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  // const [videoLoaded, setVideoLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -31,11 +31,11 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
     visible: { opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.5 } },
   };
 
-  useEffect(() => {
-    if (videoLoaded) {
-      document.getElementById("opacity")?.classList.add("bg-opacity-50");
-    }
-  }, [videoLoaded]);
+  // useEffect(() => {
+  //   if (videoLoaded) {
+  //     document.getElementById("opacity")?.classList.add("bg-opacity-50");
+  //   }
+  // }, [videoLoaded]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -52,8 +52,9 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
         loop
         muted
         playsInline
+        poster="/img/optimize-electrical-poster.jpg"
         className="absolute z-10 h-full w-full object-cover"
-        onPlay={() => setVideoLoaded(true)}
+        // onPlay={() => setVideoLoaded(true)}
       >
         <source
           src="/video/optimize-electrical-no-audio.mp4"
@@ -64,7 +65,7 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
       {/* Content of hero section */}
       <div
         id="opacity"
-        className="relative z-20 flex h-screen flex-col items-center justify-center bg-oe-blue pb-16"
+        className="relative z-20 flex h-screen flex-col items-center justify-center bg-oe-blue bg-opacity-50 pb-16"
       >
         {/* <div className="pt-2"></div> */}
 
