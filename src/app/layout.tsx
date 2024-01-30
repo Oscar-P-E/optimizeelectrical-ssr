@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata = {
-  title: "Optimise Electrical",
+  title: "Optimize Electrical",
   description:
     "Your local electrician on the Sunshine Coast, Beerwah 4519, Caloundra 4551, Nambour 4560, electrician near me",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
