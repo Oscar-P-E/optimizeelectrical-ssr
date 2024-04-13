@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef } from "react";
+import GoogleStars from "./GoogleStars";
 
 type HeroProps = {
   scrollToContact: () => void;
@@ -111,6 +112,9 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
         >
           Contact Us
         </motion.button>
+
+        <GoogleStars />
+
         <div className="pb-4"></div>
       </div>
     </div>
