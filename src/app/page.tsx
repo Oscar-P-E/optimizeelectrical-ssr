@@ -12,7 +12,7 @@ import { ServiceAreas } from "./_components/ServiceAreas";
 import { Testimonials } from "./_components/Testimonials";
 import { Contact } from "./_components/Contact";
 import { Footer } from "./_components/Footer";
-import { useTawkTo } from "./hooks/useTawkTo";
+// import { useTawkTo } from "./hooks/useTawkTo";
 import { Helmet } from "react-helmet";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useTawkTo();
+  // useTawkTo();
 
   const videoJsonLd = {
     "@context": "http://schema.org",
