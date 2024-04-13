@@ -112,8 +112,9 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
         >
           Contact Us
         </motion.button>
-
+<div className="pt-4">
         <GoogleStars />
+        </div>
 
         <div className="pb-4"></div>
       </div>

@@ -3,6 +3,7 @@ import { FaQuoteLeft, FaUserCircle } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef } from "react";
+import GoogleStars from "./GoogleStars";
 
 export const Testimonials = () => {
   const testimonials = [
@@ -140,6 +141,9 @@ export const Testimonials = () => {
                 </div>
               ))}
             </Slider>
+            <div className="pt-4">
+            <GoogleStars />
+            </div>
           </div>
         </div>
       </div>
