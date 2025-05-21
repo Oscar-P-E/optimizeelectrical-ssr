@@ -83,7 +83,6 @@ export const Hero = ({ scrollToContact }: HeroProps) => {
         <ul className="flex flex-col gap-2 pb-10 pt-8 sm:gap-3 sm:pt-10">
           {[
             "Lifetime Workmanship Guarantee",
-            "No Call Out Charges or Travel Costs",
             "All Types of Electrical Work",
           ].map((item, i) => (
             <motion.li
